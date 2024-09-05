@@ -4,7 +4,7 @@ import { Github } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="h-svh flex items-center justify-center sm:bg-background bg-card-foreground">
+    <div className="sm:bg-background bg-card-foreground">
       <div className="bg-card-foreground text-popover rounded-lg sm:p-12 p-4 text-center space-y-3">
         <span className="text-6xl font-bold">Blip📟</span>
         <p className="text-input opacity-80 font-semibold">
