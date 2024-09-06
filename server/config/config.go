@@ -41,7 +41,10 @@ func init() {
 		PostgresDatabase: os.Getenv("POSTGRES_DATABASE"),
 	}
 
-	if Config.RedisHost == "" || Config.PostgresHost == "" {
+	// if Config.RedisHost == "" || Config.PostgresHost == "" {
+	// 		log.Fatal("Environment variables not set")
+	// }
+	if Config.PostgresHost == "" {
 		log.Fatal("Environment variables not set")
 	}
 }

@@ -1,19 +1,21 @@
 package main
 
 import (
+	"server/auth"
 	"server/database"
 
-	"github.com/gofiber/fiber/v3"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 func main() {
 	database.InitPostgres()
 	app := fiber.New()
-	app.Get("/", func(c fiber.Ctx) error {
-		return c.JSON((fiber.Map{
-			"message": "Hello",
-		}))
+	app.Use(logger.New())
+	app.Get("/api/health", func(ctx *fiber.Ctx) error {
+		return ctx.SendString("hello")
 	})
 
+	app.Post("/api/auth/signup", auth.SignUp)
 	app.Listen(":8080")
 }
