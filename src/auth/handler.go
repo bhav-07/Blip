@@ -1,10 +1,10 @@
 package auth
 
 import (
+	"chat-app/src/config"
+	"chat-app/src/database"
+	"chat-app/src/models"
 	"log"
-	"server/config"
-	"server/database"
-	"server/models"
 	"strconv"
 	"time"
 

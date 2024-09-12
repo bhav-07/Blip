@@ -1,12 +1,11 @@
 package auth
 
 import (
+	"chat-app/src/config"
 	"log"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gofiber/fiber/v2"
-
-	"server/config"
 )
 
 func AuthorizationMiddleware(ctx *fiber.Ctx) error {

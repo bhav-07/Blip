@@ -1,10 +1,9 @@
 package database
 
 import (
+	"chat-app/src/config"
 	"fmt"
 	"log"
-
-	"server/config"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
