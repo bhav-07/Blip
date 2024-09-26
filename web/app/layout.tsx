@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import backgroundImage from "@/public/bg.svg";
 
 const font = Poppins({ subsets: ["latin"], weight: ["400"] });
 
@@ -19,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background text-foreground font-sans antialiased flex items-center justify-center",
+          "min-h-screen custom-bg text-foreground font-sans antialiased flex items-center justify-center",
           font.className
         )}
       >
