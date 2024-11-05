@@ -12,11 +12,11 @@ const BlipLogo = () => {
         className="size-12"
       >
         {" "}
-        <g clip-path="url(#clip0_238_1296)">
+        <g clipPath="url(#clip0_238_1296)">
           {" "}
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M100 0H0L100 100H0L100 200H200L100 100H200L100 0Z"
             fill="url(#paint0_linear_238_1296)"
           />{" "}
@@ -32,8 +32,7 @@ const BlipLogo = () => {
             gradientUnits="userSpaceOnUse"
           >
             {" "}
-            <stop stop-color="#ACAAFF" />{" "}
-            <stop offset="1" stop-color="#C0E8FF" />{" "}
+            <stop stopColor="#ACAAFF" /> <stop offset="1" stopColor="#C0E8FF" />{" "}
           </linearGradient>{" "}
           <clipPath id="clip0_238_1296">
             {" "}

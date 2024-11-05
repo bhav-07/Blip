@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import backgroundImage from "@/public/bg.svg";
 
 const font = Poppins({ subsets: ["latin"], weight: ["400"] });
 
