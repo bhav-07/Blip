@@ -108,6 +108,16 @@ func LogIn(c *fiber.Ctx) error {
 		})
 	}
 
+	c.Cookie(&fiber.Cookie{
+		Name:     "auth_token",
+		Value:    token,
+		Expires:  time.Now().Add(24 * time.Hour),
+		HTTPOnly: true,
+		Secure:   false,
+		SameSite: "None",
+		Domain:   "localhost",
+	})
+
 	return c.JSON(fiber.Map{
 		"error":   false,
 		"message": "Login success",

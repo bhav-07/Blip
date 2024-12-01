@@ -33,7 +33,7 @@ func init() {
 
 func InitPostgres() {
 	var err error
-	dsn := "host=" + postgresConfig.Host + " user=" + postgresConfig.User + " password=" + postgresConfig.Password + " dbname=" + postgresConfig.Database + " port=" + postgresConfig.Port + " sslmode=require"
+	dsn := "host=" + postgresConfig.Host + " user=" + postgresConfig.User + " password=" + postgresConfig.Password + " dbname=" + postgresConfig.Database + " port=" + postgresConfig.Port + " sslmode=disable"
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
