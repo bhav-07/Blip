@@ -2,6 +2,7 @@ package main
 
 import (
 	"chat-app/src/auth"
+	"chat-app/src/cache"
 	"chat-app/src/chat"
 	"chat-app/src/config"
 	"chat-app/src/database"
@@ -18,7 +19,7 @@ import (
 func main() {
 	app := fiber.New()
 
-	// cache.InitRedis()
+	cache.InitRedis()
 	database.InitPostgres()
 
 	app.Use(logger.New())
