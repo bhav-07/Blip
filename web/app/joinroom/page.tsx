@@ -38,6 +38,7 @@ const JoinRoom = (props: Props) => {
       console.log("Message received from server: ", message.data);
       const data = JSON.parse(message.data);
       if (data.type === "join_room" && data.success) {
+        console.log(`Redirecting to /chat?roomName=${roomName}`);
         router.push(`/chat?roomName=${roomName}`);
       }
     };
