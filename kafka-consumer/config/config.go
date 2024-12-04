@@ -22,24 +22,15 @@ var Config AppConfig
 func init() {
 	// Initialize Configuration
 	Config = AppConfig{
-		// KafkaHost:        os.Getenv("KAFKA_HOST"),
-		// KafkaPort:        os.Getenv("KAFKA_PORT"),
-		// KafkaTopic:       os.Getenv("KAFKA_TOPIC"),
-		// KafkaGroupID:     os.Getenv("KAFKA_GROUP_ID"),
-		// PostgresHost:     os.Getenv("POSTGRES_HOST"),
-		// PostgresPort:     os.Getenv("POSTGRES_PORT"),
-		// PostgresUser:     os.Getenv("POSTGRES_USER"),
-		// PostgresPassword: os.Getenv("POSTGRES_PASSWORD"),
-		// PostgresDatabase: os.Getenv("POSTGRES_DATABASE"),
-		KafkaHost:        "localhost",
-		KafkaPort:        "9092",
-		KafkaTopic:       "chat_messages",
-		KafkaGroupID:     "chat_group",
-		PostgresHost:     "localhost",
-		PostgresPort:     "5432",
-		PostgresUser:     "postgres",
-		PostgresPassword: "postgres",
-		PostgresDatabase: "chat_db",
+		KafkaHost:        os.Getenv("KAFKA_HOST"),
+		KafkaPort:        os.Getenv("KAFKA_PORT"),
+		KafkaTopic:       os.Getenv("KAFKA_TOPIC"),
+		KafkaGroupID:     os.Getenv("KAFKA_GROUP_ID"),
+		PostgresHost:     os.Getenv("POSTGRES_HOST"),
+		PostgresPort:     os.Getenv("POSTGRES_PORT"),
+		PostgresUser:     os.Getenv("POSTGRES_USER"),
+		PostgresPassword: os.Getenv("POSTGRES_PASSWORD"),
+		PostgresDatabase: os.Getenv("POSTGRES_DATABASE"),
 	}
 
 	if Config.KafkaHost == "" || Config.PostgresHost == "" {
