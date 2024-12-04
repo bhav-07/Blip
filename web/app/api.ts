@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const nginxHost = process.env.REACT_APP_NGINX_HOST;
-const nginxPort = process.env.REACT_APP_NGINX_PORT;
-const isLocalEnv = process.env.REACT_APP_NGINX_ENV === 'local';
+const nginxHost = process.env.NEXT_PUBLIC_NGINX_HOST;
+const nginxPort = process.env.NEXT_PUBLIC_NGINX_PORT;
+const isLocalEnv = process.env.NEXT_PUBLIC_NGINX_ENV === 'local';
 
 let baseURL = '';
 
