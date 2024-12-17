@@ -1,21 +1,30 @@
-# Base image
-FROM node:18
+FROM node:18-alpine AS builder
 WORKDIR /app
 
-# Install pnpm globally
-RUN corepack enable && corepack prepare pnpm@latest --activate
+COPY package*.json ./
+RUN npm ci
 
-# Copy package manager files
-COPY package.json pnpm-lock.yaml ./
+COPY . .
 
-# Install dependencies
-RUN pnpm install
+RUN npm run build
 
-# Copy the entire application code
-COPY . ./
+FROM node:18-alpine AS runner
+WORKDIR /app
 
-# Expose the Next.js dev server port
+ENV NODE_ENV production
+
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/next.config.mjs ./
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+RUN chown -R nextjs:nodejs /app
+USER nextjs
+
 EXPOSE 3000
 
-# Start the Next.js app in development mode
-CMD ["pnpm", "dev"]
+CMD ["npm", "start"]

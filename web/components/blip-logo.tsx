@@ -2,14 +2,14 @@ import React from "react";
 
 const BlipLogo = () => {
   return (
-    <h1 className="text-white text-6xl flex items-center justify-center gap-2">
+    <h1 className="text-white md:text-7xl text-5xl font-mono flex items-center justify-center gap-2">
       <svg
         width="200"
         height="200"
         viewBox="0 0 200 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="size-12"
+        className="md:size-12 size-9"
       >
         {" "}
         <g clipPath="url(#clip0_238_1296)">

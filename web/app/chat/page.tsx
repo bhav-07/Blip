@@ -1,6 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  useCallback,
+  useRef,
+  Suspense,
+} from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
@@ -19,7 +26,19 @@ interface Message {
 const MAX_RECONNECT_ATTEMPTS = 5;
 const RECONNECT_INTERVAL = 3000;
 
-const ChatRoom: React.FC = () => {
+const Loading = () => {
+  return (
+    <div className="bg-container">
+      <div className="chat-room">
+        <div className="chat-room-header">
+          <h3 className="text-xl font-semibold">Loading chat room...</h3>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ChatRoomContent: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [showPicker, setShowPicker] = useState(false);
@@ -32,6 +51,14 @@ const ChatRoom: React.FC = () => {
   const searchParams = useSearchParams();
   const roomName = searchParams.get("roomName") || "";
   const ws = useContext(WebSocketContext);
+
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    chatContainerRef.current?.scrollTo({
+      top: chatContainerRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [messages]);
 
   const messageWithLineBreaks = (message: string) => {
     return message.split("\n").map((line, index, array) =>
@@ -46,7 +73,6 @@ const ChatRoom: React.FC = () => {
     );
   };
 
-  // Rest of your existing WebSocket logic...
   const attemptReconnect = useCallback(() => {
     if (reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
       setConnectionError("Unable to connect to chat. Please try again later.");
@@ -182,7 +208,7 @@ const ChatRoom: React.FC = () => {
           <div className="error-message">{connectionError}</div>
         )}
 
-        <div className="message-box">
+        <div className="message-box" ref={chatContainerRef}>
           {messages.map((msg, index) => {
             const isJoiningMessage = msg.type === "join_room";
             const isOwnMessage = msg.sender === userID;
@@ -256,6 +282,14 @@ const ChatRoom: React.FC = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const ChatRoom: React.FC = () => {
+  return (
+    <Suspense fallback={<Loading />}>
+      <ChatRoomContent />
+    </Suspense>
   );
 };
 

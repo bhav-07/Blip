@@ -1,13 +1,20 @@
 "use client";
 
 import Container from "@/components/container";
-import React, { useState, useContext, useEffect, FormEvent } from "react";
+import React, {
+  useState,
+  useContext,
+  useEffect,
+  FormEvent,
+  Suspense,
+} from "react";
 import { WebSocketContext } from "@/lib/websocket-context";
 import { useRouter, useSearchParams } from "next/navigation";
 
 type Props = {};
 
-const JoinRoom = (props: Props) => {
+// Create a separate component for the form content
+const JoinRoomContent = () => {
   const [roomName, setRoomName] = useState("");
   const [roomJoiningErrorMessage, setRoomJoiningErrorMessage] = useState("");
   const router = useRouter();
@@ -20,6 +27,7 @@ const JoinRoom = (props: Props) => {
   const isLocalEnv = process.env.NEXT_PUBLIC_NGINX_ENV === "local";
 
   const endpoint = isLocalEnv ? `ws://${host}:${port}` : `wss://${host}`;
+
   useEffect(() => {
     if (!ws?.current || ws.current.readyState !== WebSocket.OPEN) {
       if (ws) {
@@ -109,6 +117,20 @@ const JoinRoom = (props: Props) => {
         <button className="bg-black rounded-md p-3">Join Room 🚀</button>
       </form>
     </Container>
+  );
+};
+
+// Create a loading component
+const Loading = () => {
+  return <span className="loader"></span>;
+};
+
+// Main component with Suspense boundary
+const JoinRoom = (props: Props) => {
+  return (
+    <Suspense fallback={<Loading />}>
+      <JoinRoomContent />
+    </Suspense>
   );
 };
 

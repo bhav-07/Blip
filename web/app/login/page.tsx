@@ -11,10 +11,20 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
+    setErrorMessage("");
+
+    if (username == "" || password == "") {
+      setLoading(false);
+      setErrorMessage("Username or Password cannot be empty");
+      return;
+    }
+
     try {
       const response = await API.post("/api/auth/login", {
         username,
@@ -30,11 +40,14 @@ function Login() {
       router.push("/joinroom");
     } catch (error) {
       console.error("Login failed", error);
+      setErrorMessage("An unexpected error occurred. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <Container>
+    <Container className="w-[480px]">
       {/* <HomeButton /> */}
       <form onSubmit={handleSubmit}>
         <div className="text-base font-semibold text-white space-y-4 flex flex-col">
@@ -68,8 +81,12 @@ function Login() {
               placeholder="Enter your password"
             />
           </div>
-          <button type="submit" className="bg-black rounded-md p-3">
-            Login
+          <button
+            type="submit"
+            className="bg-black rounded-md p-3 flex items-center justify-center"
+            disabled={loading}
+          >
+            {loading ? <span className="loader"></span> : "Login"}
           </button>
           <Link
             className="text-start font-thin hover:underline text-neutral-300"

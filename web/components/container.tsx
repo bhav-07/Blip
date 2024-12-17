@@ -11,7 +11,7 @@ const Container: React.FC<CustomContainerProps> = ({
 }) => {
   return (
     <div
-      className={`bg-white bg-opacity-10 backdrop-blur-lg drop-shadow-lg w-[500px] text-popover rounded-lg sm:p-16 p-4 m-2 sm:m-0 text-center space-y-4 ${className}`}
+      className={`bg-white bg-opacity-10 bg-clip-padding backdrop-filter backdrop-blur-sm animate-in fade-in-0 duration-1000 ease-in-out text-popover rounded-lg sm:p-16 p-4 m-2 sm:m-0 text-center space-y-4 ${className}`}
     >
       {children}
     </div>

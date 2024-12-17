@@ -12,10 +12,20 @@ function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setLoading(true);
+    setErrorMessage("");
+
+    if (username == "" || password == "") {
+      setLoading(false);
+      setErrorMessage("Username or Password cannot be empty");
+      return;
+    }
+
     try {
       const response = await API.post("/api/auth/signup", {
         username,
@@ -33,11 +43,14 @@ function Signup() {
       router.push("/login");
     } catch (error) {
       console.error("Signup failed", error);
+      setErrorMessage("An unexpected error occurred. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <Container>
+    <Container className="w-[480px]">
       <form onSubmit={handleSubmit}>
         <div className="font-semibold text-white space-y-4 flex flex-col">
           <BlipLogo />
@@ -70,8 +83,12 @@ function Signup() {
               placeholder="Create a Strong Password"
             />
           </div>
-          <button type="submit" className="bg-black rounded-md p-3">
-            Signup
+          <button
+            type="submit"
+            className="bg-black rounded-md p-3 flex items-center justify-center"
+            disabled={loading}
+          >
+            {loading ? <span className="loader"></span> : "Sign up"}
           </button>
           <Link
             className="text-start font-thin hover:underline text-neutral-300"

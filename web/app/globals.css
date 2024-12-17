@@ -26,8 +26,14 @@
   }
 }
 
-.custom-bg {
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("/bg.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .bg-container {
@@ -139,6 +145,15 @@
   left: 65%;
 }
 
+.chat-room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  margin-bottom: 5px;
+  font-family: "Poppins", sans-serif;
+}
+
 /* Footer styles */
 .chat-room-footer {
   display: flex;
@@ -206,6 +221,18 @@
   transition: all 0.2s ease;
 }
 
+.leave-room-button {
+  background: rgb(224, 96, 96);
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.leave-room-button:hover {
+  background: #d34545;
+}
+
 .send-message-button:hover:not(:disabled) {
   background: #4f46e5;
 }
@@ -242,6 +269,24 @@
 
 .message-box::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.3);
+}
+
+.loader {
+  border: 2px solid #f3f3f3; /* Light gray background */
+  border-top: 1px solid #000; /* Blue color for the spinner */
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Animations */
