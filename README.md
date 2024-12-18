@@ -14,6 +14,9 @@ A distributed and scalable realtime chat application.
 <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" alt="Docker Badge">
 </div>
 
-## Overview of the project
+## Demo of the project
 https://github.com/user-attachments/assets/6b85c350-e56f-49a3-90c2-fbfccfbed9e8
+
+## System Diagram
+![System Diagram](web/public/system-diagram.svg)
 
