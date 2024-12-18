@@ -15,23 +15,5 @@ A distributed and scalable realtime chat application.
 </div>
 
 ## Overview of the project
+https://github.com/user-attachments/assets/6b85c350-e56f-49a3-90c2-fbfccfbed9e8
 
-<div style="position: relative; display: inline-block;">
-  <!-- Loader -->
-  <div id="loader" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-    <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;"></div>
-  </div>
-
-  <!-- Demo Video -->
-
-![Demo Video](demo.gif)
-
-</div>
-
-<!-- Spinner Animation -->
-<style>
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-</style>
