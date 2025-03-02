@@ -1,6 +1,5 @@
 # Blip
-
-A distributed and scalable realtime chat application.
+![image](https://github.com/user-attachments/assets/548fdbe8-5610-44ef-9760-fb5eba4b0bd3)
 
 ## Built Using
 
